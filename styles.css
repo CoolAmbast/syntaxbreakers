@@ -1,0 +1,228 @@
+@font-face {
+    font-family: SH;
+    src: url(SHUTTLE-X.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(websitebg.gif);
+    color: honeydew;
+    font-family: SH;
+}
+h1{
+    text-align: center;
+    font-size: 50px;
+    padding-top: 2rem;  /* Adds space at the top */
+    margin: 0;
+    background: linear-gradient(45deg, #02dec8, #009688);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Optional: add animation like your cards */
+    animation: gradient 5s linear infinite;
+    background-size: 200% 200%;
+}
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.container{
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    /* add 3d representation to the container div element */
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.container a {
+    color: inherit; 
+    text-decoration: none; 
+}
+
+.container a:visited { 
+    color: inherit; 
+}
+
+.container .item{
+    width: 18rem;
+    height: 20rem;
+    /* add brightness animation effect */
+    transition: 0.5s;
+    filter: brightness(0);
+    cursor: pointer;
+}
+
+.container .item:hover{
+    filter: brightness(1);
+    transform: translateZ(200px);
+}
+
+/* add hover animation to the right item */
+.container .item:hover + *{
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(40deg);
+}
+
+.container .item:hover + * + *{
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(20deg);
+}
+
+/* for left of the hover */
+/* +* represent the right element but for left we don't have any thing like this */
+
+.container .item:has(+ *:hover){
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(-40deg);
+}
+
+.container .item:has(+ * + *:hover){
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(-20deg);
+}
+
+.item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card {
+    margin: 0 auto;
+    padding: 2em;
+    width: 300px;
+    text-align: center;
+    background: #054b4e;
+    border-radius: 1000px;
+    position: relative;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.card::after, .card::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),#2BD2FF, #FA8BFF,#2BFF88);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 5px;
+    border-radius: 1000px;
+    animation: spin 3s linear infinite;
+}
+
+.card::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+/* Scrollbar customization */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #029d90;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #054b4e;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #029d90;  /* Slightly darker shade of #2BD2FF for hover */
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #029d90 #054b4e;
+}
+
+.audio-controls {
+    position: fixed;
+    top: 20px;   /* Changed from bottom to top */
+    left: 20px;  /* Changed from right to left */
+    background: #054b4e;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#muteButton {
+    background: #029d90;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #054b4e;
+    transition: background 0.3s ease;
+}
+
+#muteButton:hover {
+    background: #029d90;
+}
+
+#volumeSlider {
+    width: 100px;
+    accent-color: #029d90;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #029d90;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#volumeSlider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #029d90;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
