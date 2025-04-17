@@ -3,6 +3,13 @@
     src: url(SHUTTLE-X.ttf);
 }
 
+.logo {
+    display: block;
+    margin: 0 auto;
+    max-height: 250px;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
 *{
     margin: 0;
     padding: 0;
@@ -225,4 +232,3 @@ h1{
     cursor: pointer;
     border: none;
 }
-
